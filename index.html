@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indonesia Question ANswering System</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indonesia Question ANswering System</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <!-- sidebar -->
-    <input type="checkbox" id="check">
-    <div class="sidebar">
+
+  <!--Bagian header-->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img width="40" height="40" alt="" src="./assets/Universitas-Sriwijaya-Logo.png" />
+        <img width="65" height="40" alt="" src="./assets/logo_airlab.jpeg" />
+      </div>
+      <div class="menu">
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Manual</a></li>
+          <li><button>Manual</button></li>
         </ul>
-    </div>
-    <!--Bagian header-->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img width="40" height="40" alt="" src="./assets/Universitas-Sriwijaya-Logo.png">
-                <img width="65" height="40" alt="" src="./assets/logo_airlab.jpeg">
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><button>Manual</button></li>
-                </ul>
-            </div>
+      </div>
 
-            <!--menu mobile-->
-            <label for="check" class="mobile-menu"><i class="fas fa-bars fa-2x"></i></label>
+
+
+      <!--Bagian card-->
+      <div class="container">
+        <div class="card">
+          <p>
+            Pencarian Jawaban Nama Orang Pada Sistem Tanya Jawab Berbahasa Indonesia
+            <br />
+            Menggunakan Linked Open Data DBpedia
+          </p>
+          <div class="form-input">
+            <div class="form">
+              <form action="" style="background-color: #59c1bd">
+                <input type="text" name="pertanyaan" id="pertanyaan" class="input" placeholder="Masukan Pertanyaan" />
+                <div class="btn">
+                  <input name="sumbit" id="sumbit" class="cari" value="Cari" />
+                  <input type="reset" class="reset" />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="jawaban">
+            <table>
+              <tr>
+                <td style="padding: 30px;">Query Sparql</td>
+                <td><textarea type="textarea" name="query" id="query"></textarea>
+              </tr>
+              <tr>
+                <td>Jawaban</td>
+                <td><textarea type="text" name="jawaban" id="jawaban"></textarea></td>
+              </tr>
+            </table>
+          </div>
         </div>
-    </header>
-
-    <!--Bagian card-->
-    <div class="card">
-        <!-- <div class="wrapper">
-          <h4><b>John Doe</b></h4>
-        </div> -->
-            <p>Pencarian Jawaban Nama Orang Pada Sistem Tanya Jawab Berbahasa Indonesia <br> Menggunakan Linked Open Data DBpedia</p>
-            <div class="form-input">
-                <!-- <div class="form">
-                    <form action="">
-                        <input type="text" id="fname" name="fname" placeholder="Masukan Pertanyaan"><br>
-                        <input type="submit" value="cari">
-                        <input type="reset">
-                      </form> 
-                </div> -->
-                
-                    <div class="form">
-                        <form action="" style="background-color:#59C1BD;">
-                            <input type="text" name="pertanyaan" id="pertanyaan" class="input" placeholder="Masukan Pertanyaan">
-                            <div class="btn">
-                                <input type="submit" onclick="test()" class="cari" value="cari">
-                                <input type="reset" class="reset">
-                            </div>
-                        </form>
-                        <!-- <textarea name="message" class="output" rows="10" cols="30">Jawaban :</textarea>  -->
-                    </div>
-            </div>
-            <div class="jawaban">
-                <!-- <textarea id="result" name="result" placeholder="jawaban" >jawaban</textarea>
-                <textarea id="result" name="sparql" placeholder="Query SPARQL" >Query SPARQL</textarea> -->
-                <!-- <table>
-                        <tr>
-                            <td>Query SPARQL</td>
-                            <td colspan="2">....</td>
-                        </tr>
-                </table> -->
-                <table>
-                    <tr>
-                        <td style="width: 30%">Query Sparql</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Jawaban</td>
-                        <td></td>
-                    </tr>
-                    </table>
-            </div>
-    </div> 
-    
-
+      </div>
 </body>
-<script src="js/hitAPI.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  $("#sumbit").click(function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: "http://127.0.0.1:5000/?sentence=" + $("#pertanyaan").val(),
+      success: function (data, status, xhr) {
+        console.log("data: ", data);
+        $("#query").val(data.langkah3)
+        $("#jawaban").val(data.langkah5)
+
+      },
+    });
+  });
+</script>
 
 </html>

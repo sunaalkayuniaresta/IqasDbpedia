@@ -192,6 +192,7 @@ p{
   
 table {
     width: 50%;
+    display: none;
 }
 table td{
     /* border: 1px solid; */
@@ -200,9 +201,9 @@ table td{
     text-align: center;
 }
 
-header {
-    height: 40%;
-}
+/* .check:checked ~ table {
+    top: 0;
+} */
 
   @media (min-width: 320px) and (max-width: 800px) {
 

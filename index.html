@@ -24,8 +24,6 @@
         </ul>
       </div>
 
-
-
       <!--Bagian card-->
       <div class="container">
         <div class="card">
@@ -40,13 +38,13 @@
                 <input type="text" name="pertanyaan" id="pertanyaan" class="input" placeholder="Masukan Pertanyaan" />
                 <div class="btn">
                   <input name="sumbit" id="sumbit" class="cari" value="Cari" />
-                  <input type="reset" class="reset" />
+                  <input name="reset" id="reset" type="reset" class="reset" />
                 </div>
               </form>
             </div>
           </div>
           <div class="jawaban">
-            <table>
+            <table name="table">
               <tr>
                 <td style="padding: 30px;">Query Sparql</td>
                 <td><textarea type="textarea" name="query" id="query"></textarea>
@@ -73,9 +71,18 @@
         console.log("data: ", data);
         $("#query").val(data.langkah3)
         $("#jawaban").val(data.langkah5)
-
       },
     });
+  });
+  $("#reset").click(function (e) {
+    e.preventDefault();
+    $("#query").val(' ')
+    $("#jawaban").val(' ')
+    $("#pertanyaan").val(' ')
+  });
+  $("#sumbit").click(function (e) {
+    e.preventDefault();
+    $("#table").show()
   });
 </script>
 

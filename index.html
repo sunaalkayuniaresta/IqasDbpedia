@@ -43,8 +43,8 @@
               </form>
             </div>
           </div>
-          <div class="jawaban">
-            <table name="table">
+          <div class="jawaban" name="jawaban">
+            <table id="table" name="table">
               <tr>
                 <td style="padding: 30px;">Query Sparql</td>
                 <td><textarea type="textarea" name="query" id="query"></textarea>
@@ -63,7 +63,13 @@
 <script>
   $("#sumbit").click(function (e) {
     e.preventDefault();
-    $.ajax({
+    const paragraph =$("#pertanyaan").val();
+    const regex = 'siapa nama(.*) yang lahir di (.*)';
+    const found = paragraph.toLowerCase().match(regex);
+    if(found==null){
+      alert("Pertanyaan Tidak Sesuai Format \n Silakan masukan pertanyaan sesuai format \n contoh: Siapa nama (pekerjaan) yang lahir di (daerah)");
+    }else{
+      $.ajax({
       type: "GET",
       dataType: "json",
       url: "http://127.0.0.1:5000/?sentence=" + $("#pertanyaan").val(),
@@ -71,19 +77,26 @@
         console.log("data: ", data);
         $("#query").val(data.langkah3)
         $("#jawaban").val(data.langkah5)
+        $("#table").show();
       },
     });
+      
+    }
+
+    console.log(found);
+   
   });
   $("#reset").click(function (e) {
     e.preventDefault();
     $("#query").val(' ')
     $("#jawaban").val(' ')
     $("#pertanyaan").val(' ')
+    $("#table").hide();
   });
-  $("#sumbit").click(function (e) {
-    e.preventDefault();
-    $("#table").show()
-  });
+  // $("#sumbit").click(function (e) {
+  //   e.preventDefault();
+  //   $("#jawaban").show()
+  // });
 </script>
 
 </html>

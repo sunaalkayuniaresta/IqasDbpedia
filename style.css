@@ -112,8 +112,10 @@ button:hover {
     transition: 0.3s;
     background-color:#59C1BD;
     margin-top: 100px;
-    margin-bottom: 100px;
-    padding-bottom: 200px;
+    /* margin-top: 80px; */
+    margin-bottom: 10px;
+    padding-bottom: 100px;
+    /* padding-bottom: 150px; */
     width: 80%;
     border-radius: 10px;
    
@@ -176,7 +178,7 @@ p{
 }
 
 .jawaban textarea {
-    width: 445px;
+    width: 415px;
     height: 422px;
     box-sizing: border-box;
     padding: 12px;
@@ -191,7 +193,7 @@ p{
 }
   
 table {
-    width: 50%;
+    width: 60%;
     display: none;
 }
 table td{
